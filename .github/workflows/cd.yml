@@ -1,0 +1,23 @@
+name: Node.js CD
+
+on:
+  push:
+    branches: [ prod ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@prod
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd ~/domains/beaution.usermd.net/public_nodejs
+          git pull origin prod
+          git status
+          yarn install --only=prod
