@@ -38,7 +38,7 @@ async function startApolloServer() {
 
   try {
     const { url } = await startStandaloneServer(server, {
-      listen: { port: 4000 },
+      listen: { port: 3001 },
     });
     await startFastifyApp();
     console.log(`🚀 Server ready at ${url}`);
