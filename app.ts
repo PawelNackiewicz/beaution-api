@@ -1,17 +1,23 @@
-const fastify = require('fastify')({
-  logger: true
-})
+declare const PhusionPassenger: unknown;
 
-fastify.get('/', async (request: unknown, reply: unknown) => {
-  return { hello: 'world' }
-})
+const fastify = require("fastify")({
+  logger: true,
+});
+
+fastify.get("/", async (request: unknown, reply: unknown) => {
+  return { hello: "world" };
+});
 
 const start = async () => {
   try {
-    await fastify.listen({ port: 3000 })
+    if (typeof PhusionPassenger !== "undefined") {
+      fastify.listen({ path: "passenger", host: "127.0.0.1" });
+    } else {
+      fastify.listen(3000);
+    }
   } catch (err) {
-    fastify.log.error(err)
-    process.exit(1)
+    fastify.log.error(err);
+    process.exit(1);
   }
-}
-start()
+};
+start();
