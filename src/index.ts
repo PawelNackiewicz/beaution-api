@@ -20,7 +20,7 @@ if (typeof (PhusionPassenger) !== 'undefined') {
 const startFastifyApp = async () => {
   try {
     if (typeof PhusionPassenger !== "undefined") {
-      fastify.listen({ path: "passenger", host: "127.0.0.1" });
+      fastify.listen('passenger');
     } else {
       fastify.listen(3000);
     }
