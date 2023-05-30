@@ -12,6 +12,11 @@ fastify.get("/", async (request: unknown, reply: unknown) => {
   return { hello: "world" };
 });
 
+if (typeof (PhusionPassenger) !== 'undefined') {
+  //@ts-ignore
+  PhusionPassenger.configure({ autoInstall: false });
+}
+
 const startFastifyApp = async () => {
   try {
     if (typeof PhusionPassenger !== "undefined") {
